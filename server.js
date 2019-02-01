@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 var mongoose = require('mongoose');
 console.log(process.env.NODE_ENV);
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV !== "production") {
   mongoose.connect('mongodb://test:password1@ds217125.mlab.com:17125/heroku_0jcb26wg');
 } else {
   mongoose.connect('mongodb://localhost/peakbagger');
@@ -16,8 +16,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   // we're connected!
   console.log('connect to peakbagger hi')
-  var bookSchema = new mongoose.Schema({
-    title: String,
+  var user = new mongoose.Schema({
+    name: String,
     authors: String,
     description: String,
     image: String,
