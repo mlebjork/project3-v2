@@ -27,7 +27,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "api": "nodemon ./server/server.js",
-    "install": "cd client && npm install",
+    "install": "npm install",
     "dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\"",
     "heroku-postbuild": "npm run build"
   },
