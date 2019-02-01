@@ -23,7 +23,7 @@ db.once('open', function() {
     image: String,
     link: String
   });
-  var Book = mongoose.model('Book', bookSchema);
+  var Book = mongoose.model('Peakbagger', bookSchema);
   var dude = new Book({
     title: `title ${Math.random()}`,
     authors: Math.random(),
