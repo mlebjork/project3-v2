@@ -20,16 +20,22 @@
     "spectre.css": "^0.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server/server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "api": "nodemon ./server/server.js",
-    "dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\""
+    "install": "cd client && npm install",
+    "dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\"",
+    "heroku-postbuild": "npm run build"
   },
   "devDependencies": {
     "concurrently": "^3.5.1",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "if-env": "^1.0.4"
+
   },
   "proxy": "http://localhost:8080"
 }
