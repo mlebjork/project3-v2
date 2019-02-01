@@ -7,7 +7,7 @@ console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
   mongoose.connect('mongodb://test:password1@ds217125.mlab.com:17125/heroku_0jcb26wg');
 } else {
-  mongoose.connect('mongodb://localhost/googlebooks');
+  mongoose.connect('mongodb://localhost/peakbagger');
 }
 // mongoose.connect('mongodb://test:password1@ds217125.mlab.com:17125/heroku_0jcb26wg');
 // mongodb://<dbuser>:<dbpassword>@ds217125.mlab.com:17125/heroku_0jcb26wg
