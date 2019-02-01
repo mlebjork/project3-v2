@@ -3,6 +3,13 @@ import React, { Component } from 'react'
 class Home extends Component {
     constructor() {
         super()
+        // axios.get('/peaks/').then(response => {
+        //   console.log('Get user response: ')
+        //   console.log(response.data)
+        //   this.setState({
+        //     peaks: response.data.peaks
+        //   })
+        // })
     }
 
 

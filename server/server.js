@@ -2,14 +2,16 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const session = require('express-session')
-const dbConnection = require('./database') 
+const dbConnection = require('./database')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('./passport');
 const app = express()
-const PORT = 8080
+const PORT  = process.env.PORT || 8080
 // Route requires
 const user = require('./routes/user')
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+}
 // MIDDLEWARE
 app.use(morgan('dev'))
 app.use(
@@ -37,7 +39,7 @@ app.use(passport.session()) // calls the deserializeUser
 // Routes
 app.use('/user', user)
 
-// Starting Server 
+// Starting Server
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
