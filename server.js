@@ -15,7 +15,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   // we're connected!
-  console.log('connect to peakbagger')
+  console.log('connect to peakbagger hi')
   var bookSchema = new mongoose.Schema({
     title: String,
     authors: String,
