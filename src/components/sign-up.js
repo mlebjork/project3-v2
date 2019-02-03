@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import zxcvbn from 'zxcvbn'
 
 class Signup extends Component {
 	constructor() {
@@ -7,8 +8,8 @@ class Signup extends Component {
 		this.state = {
 			username: '',
 			password: '',
-			confirmPassword: '',
-
+			passwordstrength: 0, 
+			passwordweak: false
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -17,33 +18,45 @@ class Signup extends Component {
 		this.setState({
 			[event.target.name]: event.target.value
 		})
+		console.log(this.state.username);
+		console.log(this.state.password);
+		var val = this.state.password;
+		var result = zxcvbn(val);
+		this.setState({passwordstrength: result.score});
+		this.setState({passwordweak: false});
 	}
 	handleSubmit(event) {
 		console.log('sign-up handleSubmit, username: ')
 		console.log(this.state.username)
 		event.preventDefault()
 
-		//request to server to add a new username/password
-		axios.post('/user/', {
-			username: this.state.username,
-			password: this.state.password
-		})
-			.then(response => {
-				console.log(response)
-				if (!response.data.errmsg) {
-					console.log('successful signup')
-					this.setState({ //redirect to login page
-						redirectTo: '/login'
-					})
-				} else {
-					console.log('username already taken')
-				}
-			}).catch(error => {
-				console.log('signup error: ')
-				console.log(error)
-
+		if (this.state.passwordstrength >=2) {
+			axios.post('/user/', {
+				username: this.state.username,
+				password: this.state.password
 			})
-	}
+				.then(response => {
+					console.log(response)
+					if (!response.data.errmsg) {
+						console.log('successful signup')
+						this.setState({ //redirect to login page
+							redirectTo: '/login'
+						})
+					} else {
+						console.log('username already taken')
+					}
+				}).catch(error => {
+					console.log('signup error: ')
+					console.log(error)
+	
+				})
+	
+		}else{
+			this.setState({passwordweak:true})
+		}
+
+		//request to server to add a new username/password
+			}
 
 
 render() {
@@ -79,7 +92,9 @@ render() {
 							onChange={this.handleChange}
 						/>
 					</div>
-				</div>
+					
+				</div><br/>
+				{this.state.passwordweak ? <p>Password is too weak, choose a new password</p> : ""}
 				<div className="form-group ">
 					<div className="col-7"></div>
 					<button
