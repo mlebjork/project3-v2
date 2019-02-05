@@ -9,6 +9,8 @@ const app = express()
 const PORT  = process.env.PORT || 8080
 // Route requires
 const user = require('./routes/user')
+const peaks = require('./routes/peaks')
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("build"));
 }
@@ -38,6 +40,7 @@ app.use(passport.session()) // calls the deserializeUser
 
 // Routes
 app.use('/user', user)
+app.use('/peaks', peaks)
 
 // Starting Server
 app.listen(PORT, () => {
