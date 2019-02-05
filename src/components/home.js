@@ -7,17 +7,20 @@ class Home extends Component {
     constructor() {
         super()
 
-        // axios.get('/peaks/').then(response => {
-        //   console.log('Get user response: ')
-        //   console.log(response.data)
-        //   this.setState({
-        //     peaks: response.data.peaks
-        //   })
-        // })
+
         this.state = {
             name: '',
-            height: null
-        }
+            height: null,
+            peaks: null
+        }        
+        axios.get('/peaks', {params:{user: sessionStorage.getItem('user')}}).then(response => {
+            console.log('Get peaks response: ')
+            console.log(response.data)
+            this.setState({
+              peaks: response.data
+            })
+          })
+
         this.handleInputChange = this.handleInputChange.bind(this);
     }
     handleInputChange(event) {
@@ -37,9 +40,10 @@ class Home extends Component {
 
           console.log('Get user response: ')
           console.log(response.data)
-        //   this.setState({
-        //     peaks: response.data.peaks
-        //   })
+          this.setState({
+            peaks: response.data
+          })
+          console.log(this.state)
         })
     }
 
@@ -71,8 +75,15 @@ class Home extends Component {
                 </div>
                 <button className="btn btn-primary input-group-btn">Submit</button>
                 </form>
-                </div>    
+                </div>  
+                <ul>
+               { this.state.peaks && this.state.peaks.map((peak)=>{
+                    return <li key={peak._id}> {peak.name}</li>
+                })
+                }
+            </ul>  
             </div>
+
         )
 
     }

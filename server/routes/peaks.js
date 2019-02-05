@@ -4,22 +4,11 @@ const Peak = require('../database/models/peaks')
 const passport = require('../passport')
 
 router.get('/', (req, res, next) => {
+    const {  user } = req.query
+
     console.log('===== peaks!!======')
-    // res.send([
-    //     {
-    //         "name":"one",
-    //         height:"3000"
-    //     },
-    //     {
-    //         "name":"two",
-    //         height:"3100"
-    //     },
-    //     {
-    //         "name":"three",
-    //         height:"3330"
-    //     },
-    // ])
-    Peak.find({}, function (err, peaks) {
+
+    Peak.find({user: user}, function (err, peaks) {
         console.log(peaks)
         res.send(peaks)
     });
