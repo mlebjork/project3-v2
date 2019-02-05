@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 
 
@@ -13,11 +14,33 @@ class Home extends Component {
         //     peaks: response.data.peaks
         //   })
         // })
+        this.state = {
+            name: '',
+            height: null
+        }
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
+    handleInputChange(event) {
+        const target = event.target;
+        const name = target.name;
+        this.setState({[name]: event.target.value});
+      }
     handleFormSubmit = event =>{
         event.preventDefault();
         console.log("in the form submit");
-        
+        axios.post('/peaks/', {
+            name: this.state.name,
+            height: this.state.height,
+            user: sessionStorage.getItem('user')
+            
+        }).then(response => {
+
+          console.log('Get user response: ')
+          console.log(response.data)
+        //   this.setState({
+        //     peaks: response.data.peaks
+        //   })
+        })
     }
 
     render() {
@@ -36,11 +59,11 @@ class Home extends Component {
                 </div>
                 <div className="form-group">
                 <label className="form-label" htmlFor="peak">Peak</label>
-                <input className="form-input" type="text" id="peak" placeholder="Peak"/>
+                <input className="form-input"  onChange={this.handleInputChange} type="text" id="peak" name="name" placeholder="Peak" />
                 </div>
                 <div className="form-group">
                 <label className="form-label" htmlFor="height">Height</label>
-                <input className="form-input" type="number" id="height" placeholder="Height"/>
+                <input className="form-input"  onChange={this.handleInputChange} type="number" id="height" name="height" placeholder="Height"/>
                 </div>
                 <div className="form-group">
                 <label className="form-label" htmlFor="notes">Notes</label>

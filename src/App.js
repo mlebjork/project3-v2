@@ -39,12 +39,15 @@ class App extends Component {
           loggedIn: true,
           username: response.data.user.username
         })
+        sessionStorage.setItem('user', response.data.user.username)
       } else {
         console.log('Get user: no user');
         this.setState({
           loggedIn: false,
           username: null
         })
+        sessionStorage.removeItem('user')
+
       }
     })
   }
