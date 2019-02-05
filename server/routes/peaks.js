@@ -44,7 +44,11 @@ router.post('/', (req, res) => {
             },)
             newPeak.save((err, savedUser) => {
                 if (err) return res.json(err)
-                return res.json(savedUser)
+                Peak.find({user: user}, function (err, peaks) {
+                    console.log(peaks)
+                    res.send(peaks)
+                });
+                // return res.json(savedUser)
             })
         // }
     // })
