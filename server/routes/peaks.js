@@ -24,6 +24,16 @@ router.get('/', (req, res, next) => {
         });
     })
  })
+
+router.put('/:id', (req, res)=> {
+    console.log(req.params)
+    Peak.findByIdAndUpdate(req.params.id, req.body,  function (err, peaks) {
+        Peak.find({user: req.body.user}, function (err, peaks) {
+            console.log(peaks)
+            res.send(peaks)
+        });
+    })
+})
 router.post('/', (req, res) => {
     const { name, height, user, date, notes } = req.body
     // ADD VALIDATION

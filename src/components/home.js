@@ -13,7 +13,9 @@ class Home extends Component {
             height: '',
             date: '2019-02-12',
             notes: '',
-            peaks: null
+            peaks: null,
+            editing: false,
+            id: null
         }        
         axios.get('/peaks', {params:{user: sessionStorage.getItem('user')}}).then(response => {
             console.log('Get peaks response: ')
@@ -33,25 +35,39 @@ class Home extends Component {
     handleFormSubmit = event =>{
         event.preventDefault();
         console.log("in the form submit");
-        axios.post('/peaks/', {
-            name: this.state.name,
-            height: this.state.height,
-            user: sessionStorage.getItem('user'),
-            date: this.state.date,
-            notes: this.state.notes
-            
-        }).then(response => {
+        if(!this.state.editing) {
+            axios.post('/peaks/', {
+                name: this.state.name,
+                height: this.state.height,
+                user: sessionStorage.getItem('user'),
+                date: this.state.date,
+                notes: this.state.notes
+                
+            }).then(response => {
+              this.setState({
+                peaks: response.data,
+                name: '',
+                height: '',
+                notes: ''
+              })
+              console.log(this.state)
+            })
+        } else {
+            axios.put(`/peaks/${this.state.id}`, {
+                name: this.state.name,
+                height: this.state.height,
+                user: sessionStorage.getItem('user'),
+                date: this.state.date,
+                notes: this.state.notes
+            }).then(response => {
+                this.setState({
+                    peaks: response.data,
+                    name: '',
+                    height: 0
+                })
+            })
+        }
 
-          console.log('Get user response: ')
-          console.log(response.data)
-          this.setState({
-            peaks: response.data,
-            name: '',
-            height: 0,
-            notes: ''
-          })
-          console.log(this.state)
-        })
     }
     delete(id){
         console.log(id)
@@ -62,6 +78,18 @@ class Home extends Component {
             height: 0
           })
         })
+    }
+    update(peak){
+        this.setState({
+            name: peak.name,
+            height: peak.height,
+            notes: peak.notes,
+            date: peak.date,
+            id: peak._id,
+            editing: true
+          })
+        console.log(peak)
+
     }
     render() {
         const imageStyle = {
@@ -115,15 +143,22 @@ class Home extends Component {
                 <label className="form-label" htmlFor="notes">Notes</label>
                 <textarea className="form-input" id="notes" name="notes" value={this.state.notes} onChange={this.handleInputChange} placeholder="Notes about your climb. Route, weather conditions, difficulty etc." rows="3"></textarea>
                 </div>
-                <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0}>Submit</button>
+                <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0 || this.state.editing} type="submit">Submit</button>
+                <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0 && !this.state.editing} type="update">Update</button>
+
                 </form>
                 </div>  
-                <ul>
-               { this.state.peaks && this.state.peaks.map((peak)=>{
-                    return <li key={peak._id}> {peak.date} /{peak.name} / {peak.height} /  notes: {peak.notes || '---'} <span onClick={()=>{this.delete(peak._id)}}>delete</span></li>
-                })
-                }
-            </ul>  
+                <ol>
+                { this.state.peaks && this.state.peaks.map((peak)=>{
+                        return (
+                            <li key={peak._id}> {peak.date} / {peak.name} / {peak.height} ft /  notes: {peak.notes || '---'} 
+                                <span className="delete" onClick={()=>{this.delete(peak._id)}}>delete</span>
+                                <span className="update" onClick={()=>{this.update(peak)}}>update</span>
+                            </li>
+                            )
+                    })
+                    }
+                </ol>  
             </div>
 
         )
