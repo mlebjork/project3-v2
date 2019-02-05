@@ -10,7 +10,7 @@ class Home extends Component {
 
         this.state = {
             name: '',
-            height: null,
+            height: '',
             peaks: null
         }        
         axios.get('/peaks', {params:{user: sessionStorage.getItem('user')}}).then(response => {
