@@ -11,6 +11,7 @@ class Home extends Component {
         this.state = {
             name: '',
             height: '',
+            date: '2019-02-12',
             peaks: null
         }        
         axios.get('/peaks', {params:{user: sessionStorage.getItem('user')}}).then(response => {
@@ -34,7 +35,8 @@ class Home extends Component {
         axios.post('/peaks/', {
             name: this.state.name,
             height: this.state.height,
-            user: sessionStorage.getItem('user')
+            user: sessionStorage.getItem('user'),
+            date: this.state.date
             
         }).then(response => {
 
@@ -96,7 +98,7 @@ class Home extends Component {
                 <form onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
                 <label className="form-label" htmlFor="date">Date</label>
-                <input className="form-input" type="date" id="date" min="1918-01-01" max="2040-12-31" defaultValue="2019-02-12"/>
+                <input className="form-input"  value={this.state.date} onChange={this.handleInputChange} name="date" type="date" id="date" min="1918-01-01" max="2040-12-31" defaultValue="2019-02-12"/>
                 </div>
                 <div className="form-group">
                 <label className="form-label" htmlFor="peak">Peak</label>
@@ -115,7 +117,7 @@ class Home extends Component {
                 </div>  
                 <ul>
                { this.state.peaks && this.state.peaks.map((peak)=>{
-                    return <li key={peak._id}> {peak.name} / {peak.height} <span onClick={()=>{this.delete(peak._id)}}>delete</span></li>
+                    return <li key={peak._id}> {peak.name} / {peak.height} / {peak.date} <span onClick={()=>{this.delete(peak._id)}}>delete</span></li>
                 })
                 }
             </ul>  
