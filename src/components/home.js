@@ -48,7 +48,16 @@ class Home extends Component {
           console.log(this.state)
         })
     }
-
+    delete(id){
+        console.log(id)
+        axios.delete(`/peaks?id=${id}&user=${sessionStorage.getItem('user')}`).then(response => {
+          this.setState({
+            peaks: response.data,
+            name: '',
+            height: 0
+          })
+        })
+    }
     render() {
         const imageStyle = {
             width: 400
@@ -106,7 +115,7 @@ class Home extends Component {
                 </div>  
                 <ul>
                { this.state.peaks && this.state.peaks.map((peak)=>{
-                    return <li key={peak._id}> {peak.name} / {peak.height}</li>
+                    return <li key={peak._id}> {peak.name} / {peak.height} <span onClick={()=>{this.delete(peak._id)}}>delete</span></li>
                 })
                 }
             </ul>  

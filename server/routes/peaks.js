@@ -13,7 +13,17 @@ router.get('/', (req, res, next) => {
         res.send(peaks)
     });
 })
-
+ router.delete('/', (req, res)=>{
+     console.log(req.query.params)
+    Peak.findOneAndRemove({_id: req.query.id}, function (err, peaks) {
+        console.log(peaks)
+        // res.send('peak removed')
+        Peak.find({user: req.query.user}, function (err, peaks) {
+            console.log(peaks)
+            res.send(peaks)
+        });
+    })
+ })
 router.post('/', (req, res) => {
     const { name, height, user } = req.body
     // ADD VALIDATION
