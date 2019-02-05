@@ -41,7 +41,9 @@ class Home extends Component {
           console.log('Get user response: ')
           console.log(response.data)
           this.setState({
-            peaks: response.data
+            peaks: response.data,
+            name: '',
+            height: 0
           })
           console.log(this.state)
         })
@@ -63,11 +65,11 @@ class Home extends Component {
                 </div>
                 <div className="form-group">
                 <label className="form-label" htmlFor="peak">Peak</label>
-                <input className="form-input"  onChange={this.handleInputChange} type="text" id="peak" name="name" placeholder="Peak" />
+                <input className="form-input"  value={this.state.name} onChange={this.handleInputChange} type="text" id="peak" name="name" placeholder="Peak" />
                 </div>
                 <div className="form-group">
                 <label className="form-label" htmlFor="height">Height</label>
-                <input className="form-input"  onChange={this.handleInputChange} type="number" id="height" name="height" placeholder="Height"/>
+                <input className="form-input" value={this.state.height} onChange={this.handleInputChange} type="number" id="height" name="height" placeholder="Height"/>
                 </div>
                 <div className="form-group">
                 <label className="form-label" htmlFor="notes">Notes</label>
@@ -78,7 +80,7 @@ class Home extends Component {
                 </div>  
                 <ul>
                { this.state.peaks && this.state.peaks.map((peak)=>{
-                    return <li key={peak._id}> {peak.name}</li>
+                    return <li key={peak._id}> {peak.name} / {peak.height}</li>
                 })
                 }
             </ul>  
