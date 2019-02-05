@@ -25,7 +25,7 @@ router.get('/', (req, res, next) => {
     })
  })
 router.post('/', (req, res) => {
-    const { name, height, user, date } = req.body
+    const { name, height, user, date, notes } = req.body
     // ADD VALIDATION
     // Peak.findOne({ username: username }, (err, user) => {
     //     if (err) {
@@ -37,10 +37,11 @@ router.post('/', (req, res) => {
     //     }
     //     else {
             const newPeak = new Peak(        {
-                "name": name,
+                name: name,
                 height: height,
                 user: user,
-                date: date
+                date: date,
+                notes: notes
             },)
             newPeak.save((err, savedUser) => {
                 if (err) return res.json(err)

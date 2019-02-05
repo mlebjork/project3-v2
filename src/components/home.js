@@ -12,6 +12,7 @@ class Home extends Component {
             name: '',
             height: '',
             date: '2019-02-12',
+            notes: '',
             peaks: null
         }        
         axios.get('/peaks', {params:{user: sessionStorage.getItem('user')}}).then(response => {
@@ -36,7 +37,8 @@ class Home extends Component {
             name: this.state.name,
             height: this.state.height,
             user: sessionStorage.getItem('user'),
-            date: this.state.date
+            date: this.state.date,
+            notes: this.state.notes
             
         }).then(response => {
 
@@ -45,7 +47,8 @@ class Home extends Component {
           this.setState({
             peaks: response.data,
             name: '',
-            height: 0
+            height: 0,
+            notes: ''
           })
           console.log(this.state)
         })
@@ -110,14 +113,14 @@ class Home extends Component {
                 </div>
                 <div className="form-group">
                 <label className="form-label" htmlFor="notes">Notes</label>
-                <textarea className="form-input" id="notes" placeholder="Notes about your climb. Route, weather conditions, difficulty etc." rows="3"></textarea>
+                <textarea className="form-input" id="notes" name="notes" value={this.state.notes} onChange={this.handleInputChange} placeholder="Notes about your climb. Route, weather conditions, difficulty etc." rows="3"></textarea>
                 </div>
                 <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0}>Submit</button>
                 </form>
                 </div>  
                 <ul>
                { this.state.peaks && this.state.peaks.map((peak)=>{
-                    return <li key={peak._id}> {peak.name} / {peak.height} / {peak.date} <span onClick={()=>{this.delete(peak._id)}}>delete</span></li>
+                    return <li key={peak._id}> {peak.date} /{peak.name} / {peak.height} /  notes: {peak.notes || '---'} <span onClick={()=>{this.delete(peak._id)}}>delete</span></li>
                 })
                 }
             </ul>  

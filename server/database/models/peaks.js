@@ -9,7 +9,8 @@ const peaksSchema = new Schema({
 	name: { type: String, unique: false, required: true },
     height: { type: Number, unique: false, required: true },
     user: {type: String, unique: false, required: true},
-    date: {type: String, unique: false, required: true}
+    date: {type: String, unique: false, required: true},
+    notes: {type: String, unique: false, required: false},
 
 })
 
