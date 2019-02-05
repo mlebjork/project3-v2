@@ -53,9 +53,35 @@ class Home extends Component {
         const imageStyle = {
             width: 400
         }
+
+        // So after thinking for a while I was able to achieve height: auto in react-native image. You need to know the dimensions of your image for this hack to work. Just open your image in any image viewer and you will get the dimensions of the your image in file information. For reference the size of image I used is 541 x 362
+
+        // First import Dimensions from react-native
+
+        // import { Dimensions } from 'react-native';
+
+        // then you have to get the dimensions of the window
+
+        // const win = Dimensions.get('window');
+
+        // Now calculate ratio as
+
+        // const ratio = win.width/541; //541 is actual image width
+
+        // now the add style to your image as
+
+        // imageStyle: {
+        //     width: win.width,
+        //     height: 362 * ratio, //362 is actual height of image
+        // }
+
+
+        // You're off to Great Places! Today is your day! Your mountain is waiting, So... get on your way!
+
+
         return (
             <div>
-                <p>It's good to be home</p>
+                <p>Add the peak you climbed.</p>
                 <img style={imageStyle} src="https://i.ytimg.com/vi/N1icEHtgb3g/maxresdefault.jpg" />
             <div>
                 <form onSubmit={this.handleFormSubmit}>
@@ -75,7 +101,7 @@ class Home extends Component {
                 <label className="form-label" htmlFor="notes">Notes</label>
                 <textarea className="form-input" id="notes" placeholder="Notes about your climb. Route, weather conditions, difficulty etc." rows="3"></textarea>
                 </div>
-                <button className="btn btn-primary input-group-btn">Submit</button>
+                <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0}>Submit</button>
                 </form>
                 </div>  
                 <ul>
