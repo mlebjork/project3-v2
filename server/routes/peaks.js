@@ -38,9 +38,9 @@ router.post('/', (req, res) => {
     //     }
     //     else {
             const newPeak = new Peak(        {
-                "name": Math.random(),
-                height: Math.random(),
-                user: 'one'
+                "name": name,
+                height: height,
+                user: user
             },)
             newPeak.save((err, savedUser) => {
                 if (err) return res.json(err)
