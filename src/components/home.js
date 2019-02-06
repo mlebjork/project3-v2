@@ -6,8 +6,6 @@ import axios from 'axios'
 class Home extends Component {
     constructor() {
         super()
-
-
         this.state = {
             name: '',
             height: '',
@@ -150,34 +148,23 @@ class Home extends Component {
                 </div>
                 <div className="column col-4 col-mx-auto">
                 { this.state.peaks && this.state.peaks.map((peak)=>{
-                            return (
-                <div class="accordion">
-                    <input type="checkbox" id={peak.name} name="accordion-checkbox" hidden />
-                    <label class="accordion-header" for={peak.name}>
-                        <i class="icon icon-arrow-right mr-1"></i>
-                        {peak.date} : <b>{peak.name}</b>    
-                        <button className="btn btn-error float-right" onClick={()=>{this.delete(peak._id)}}>delete</button>
-                        <span className="btn btn-success float-right" onClick={()=>{this.update(peak)}}>update</span>
-                    </label>
-                    <div class="accordion-body">
-                        <p>{peak.height} ft</p>
-                        <p>{peak.notes}</p>
-                    </div>
-                </div>
-                  )
-                })
-                }
-                    {/* <ol>
-                    { this.state.peaks && this.state.peaks.map((peak)=>{
-                            return (
-                                <li key={peak._id}> {peak.date} / {peak.name} / {peak.height} ft /  notes: {peak.notes || '---'} 
-                                    <span className="delete" onClick={()=>{this.delete(peak._id)}}>delete</span>
-                                    <span className="update" onClick={()=>{this.update(peak)}}>update</span>
-                                </li>
-                                )
+                    return (
+                            <div class="accordion">
+                                <input type="checkbox" id={peak.name} name="accordion-checkbox" hidden />
+                                <label class="accordion-header" for={peak.name}>
+                                    <i class="icon icon-arrow-right mr-1"></i>
+                                    {peak.date} : <b>{peak.name}</b>    
+                                    <button className="btn btn-error float-right" onClick={()=>{this.delete(peak._id)}}>delete</button>
+                                    <span className="btn btn-success float-right" onClick={()=>{this.update(peak)}}>update</span>
+                                </label>
+                                <div class="accordion-body">
+                                    <p>{peak.height} ft</p>
+                                    <p>{peak.notes}</p>
+                                </div>
+                            </div>
+                            )
                         })
-                        }
-                    </ol>   */}
+                }
                 </div>
                 </div>
                 </div>
