@@ -37,18 +37,18 @@ MVC Paradigm folder structure
 Github issues and GitKraken for project manager
 
 ### Frontend:
-Spectre CSS
-ReactJS
-React DOM router
-Axios GET, POST and PUT routes for retrieving, adding and updating data
-zxcvbn npm package, a password strength estimator
+1. Spectre CSS
+2. ReactJS
+3. React DOM router
+4. Axios GET, POST and PUT routes for retrieving, adding and updating data
+5. zxcvbn npm package, a password strength estimator
 
 ### Backend:
-Node and Express Web Server
-MongoDB Database with a Mongoose ORM/ODM
-Express routing
-Deployed using Heroku (with data)
-PassportJS user authentication for signup/login
+1. Node and Express Web Server
+2. MongoDB Database with a Mongoose ORM/ODM
+3. Express routing
+4. Deployed using Heroku (with data)
+5. PassportJS user authentication for signup/login
 
 
 
