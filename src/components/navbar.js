@@ -45,12 +45,9 @@ class Navbar extends Component {
                             </section>
                         ) : (
                                 <section className="navbar-section">
-                                    <Link to="/" className="btn btn-link text-secondary">
+                                    {/* <Link to="/" className="btn btn-link text-secondary">
                                         <span className="text-secondary">home</span>
-                                        </Link>
-                                        <Link to="/" className="btn btn-link text-secondary">
-                                        <span className="text-secondary">bagged peaks</span>
-                                        </Link>
+                                        </Link> */}
                                     <Link to="/login" className="btn btn-link text-secondary">
                                     <span className="text-secondary">login</span>
 				                        </Link>
@@ -66,6 +63,9 @@ class Navbar extends Component {
                         <h1 className="App-title">PEAKBAGGER</h1>
                     </div>
                 </header>
+                {!this.props.loggedIn && (
+                    <Redirect to={'login'}/>
+                )}
             </div>
 
         );
