@@ -147,8 +147,25 @@ class Home extends Component {
                     <button className="btn btn-primary input-group-btn" onClick={this.clear} type="clear">Clear changes</button>
                 </div>
                 <div className="column col-4 col-mx-auto">
-
-                    <ol>
+                { this.state.peaks && this.state.peaks.map((peak)=>{
+                            return (
+                <div class="accordion">
+                    <input type="checkbox" id={peak.name} name="accordion-checkbox" hidden />
+                    <label class="accordion-header" for={peak.name}>
+                        <i class="icon icon-arrow-right mr-1"></i>
+                        {peak.date} : <b>{peak.name}</b>    
+                        <button className="btn btn-error float-right" onClick={()=>{this.delete(peak._id)}}>delete</button>
+                        <span className="btn btn-success float-right" onClick={()=>{this.update(peak)}}>update</span>
+                    </label>
+                    <div class="accordion-body">
+                        <p>{peak.height} ft</p>
+                        <p>{peak.notes}</p>
+                    </div>
+                </div>
+                  )
+                })
+                }
+                    {/* <ol>
                     { this.state.peaks && this.state.peaks.map((peak)=>{
                             return (
                                 <li key={peak._id}> {peak.date} / {peak.name} / {peak.height} ft /  notes: {peak.notes || '---'} 
@@ -158,7 +175,7 @@ class Home extends Component {
                                 )
                         })
                         }
-                    </ol>  
+                    </ol>   */}
                 </div>
                 </div>
                 </div>

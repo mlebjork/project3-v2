@@ -47,3 +47,11 @@ html body .container {
   padding-left: 2.4rem;
   padding-right: 2.4rem;
 }
+
+.accordion {
+  background: rgba(255, 255, 255, 0.8);;
+  border-radius: 3px;
+}
+.accordion-body {
+  padding: 0 10px;
+}
