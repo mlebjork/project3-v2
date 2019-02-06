@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import zxcvbn from 'zxcvbn'
-
+import { Redirect } from 'react-router'
 class Signup extends Component {
 	constructor() {
 		super()
@@ -9,7 +9,8 @@ class Signup extends Component {
 			username: '',
 			password: '',
 			passwordstrength: 0, 
-			passwordweak: false
+			passwordweak: false,
+			redirectTo: null
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -30,7 +31,7 @@ class Signup extends Component {
 		console.log(this.state.username)
 		event.preventDefault()
 
-		if (this.state.passwordstrength >=2) {
+		if (this.state.passwordstrength >=1) {
 			axios.post('/user/', {
 				username: this.state.username,
 				password: this.state.password
@@ -104,8 +105,11 @@ render() {
 					>Sign up</button>
 				</div>
 			</form>
+			{this.state.redirectTo && (
+				<Redirect to={this.state.redirectTo }/>
+			)}
 		</div>
-
+		
 	)
 }
 }
