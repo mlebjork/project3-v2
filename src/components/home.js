@@ -120,42 +120,48 @@ class Home extends Component {
         return (
             <div>
                 <p>Add the peak you climbed.</p>
-            <div>
-                <form onSubmit={this.handleFormSubmit}>
-                <div className="form-group">
-                <label className="form-label" htmlFor="date">Date</label>
-                <input className="form-input"  value={this.state.date} onChange={this.handleInputChange} name="date" type="date" id="date" min="1918-01-01" max="2040-12-31" defaultValue="2019-02-12"/>
-                </div>
-                <div className="form-group">
-                <label className="form-label" htmlFor="peak">Peak</label>
-                <input className="form-input"  value={this.state.name} onChange={this.handleInputChange} type="text" id="peak" name="name" placeholder="Peak" />
-                </div>
-                <div className="form-group">
-                <label className="form-label" htmlFor="height">Height</label>
-                <input className="form-input" value={this.state.height} onChange={this.handleInputChange} type="number" id="height" name="height" placeholder="Height"/>
-                </div>
-                <div className="form-group">
-                <label className="form-label" htmlFor="notes">Notes</label>
-                <textarea className="form-input" id="notes" name="notes" value={this.state.notes} onChange={this.handleInputChange} placeholder="Notes about your climb. Route, weather conditions, difficulty etc." rows="3"></textarea>
-                </div>
-                <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0 || this.state.editing} type="submit">Submit</button>
-                <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0 || !this.state.editing} type="update">Update</button>
+            <div className="container">
+            <div class="columns">
+                <div className="column col-3">
+                    <form onSubmit={this.handleFormSubmit}>
+                    <div className="form-group">
+                    <label className="form-label" htmlFor="date">Date</label>
+                    <input className="form-input"  value={this.state.date} onChange={this.handleInputChange} name="date" type="date" id="date" min="1918-01-01" max="2040-12-31" defaultValue="2019-02-12"/>
+                    </div>
+                    <div className="form-group">
+                    <label className="form-label" htmlFor="peak">Peak</label>
+                    <input className="form-input"  value={this.state.name} onChange={this.handleInputChange} type="text" id="peak" name="name" placeholder="Peak" />
+                    </div>
+                    <div className="form-group">
+                    <label className="form-label" htmlFor="height">Height</label>
+                    <input className="form-input" value={this.state.height} onChange={this.handleInputChange} type="number" id="height" name="height" placeholder="Height"/>
+                    </div>
+                    <div className="form-group">
+                    <label className="form-label" htmlFor="notes">Notes</label>
+                    <textarea className="form-input" id="notes" name="notes" value={this.state.notes} onChange={this.handleInputChange} placeholder="Notes about your climb. Route, weather conditions, difficulty etc." rows="3"></textarea>
+                    </div>
+                    <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0 || this.state.editing} type="submit">Submit</button>
+                    <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0 || !this.state.editing} type="update">Update</button>
 
-                </form>
-                </div>  
-                <button className="btn btn-primary input-group-btn" onClick={this.clear} type="clear">Clear changes</button>
+                    </form>
+                    <button className="btn btn-primary input-group-btn" onClick={this.clear} type="clear">Clear changes</button>
+                </div>
+                <div className="column col-4 col-mx-auto">
 
-                <ol>
-                { this.state.peaks && this.state.peaks.map((peak)=>{
-                        return (
-                            <li key={peak._id}> {peak.date} / {peak.name} / {peak.height} ft /  notes: {peak.notes || '---'} 
-                                <span className="delete" onClick={()=>{this.delete(peak._id)}}>delete</span>
-                                <span className="update" onClick={()=>{this.update(peak)}}>update</span>
-                            </li>
-                            )
-                    })
-                    }
-                </ol>  
+                    <ol>
+                    { this.state.peaks && this.state.peaks.map((peak)=>{
+                            return (
+                                <li key={peak._id}> {peak.date} / {peak.name} / {peak.height} ft /  notes: {peak.notes || '---'} 
+                                    <span className="delete" onClick={()=>{this.delete(peak._id)}}>delete</span>
+                                    <span className="update" onClick={()=>{this.update(peak)}}>update</span>
+                                </li>
+                                )
+                        })
+                        }
+                    </ol>  
+                </div>
+                </div>
+                </div>
             </div>
 
         )

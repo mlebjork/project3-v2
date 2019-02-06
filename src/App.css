@@ -42,3 +42,8 @@
   to { transform: rotate(360deg); }
 }
 
+html body .container {
+  text-align: left;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+}
