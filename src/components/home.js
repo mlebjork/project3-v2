@@ -165,7 +165,7 @@ class Home extends Component {
 
                 </form>
                 </div>  
-                <button className="btn btn-primary input-group-btn" onClick={this.clear} type="clear">Clear form or changes</button>
+                <button className="btn btn-primary input-group-btn" onClick={this.clear} type="clear">Clear changes</button>
 
                 <ol>
                 { this.state.peaks && this.state.peaks.map((peak)=>{
