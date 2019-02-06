@@ -1,8 +1,21 @@
-body {
+html {
+  /* To make use of full height of page*/
+  min-height: 100%; 
+  margin: 0;
+  background: url('/assets/images/mountainlogin.jpeg') no-repeat;
+  background-size: cover; 
+}
+html body {
+  min-height: 100%;
+  margin: 0;
+  background: transparent;
+}
+/* html body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-}
+  height: 100%;
+} */
 
 .delete {
   color: white;
