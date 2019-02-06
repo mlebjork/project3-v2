@@ -10,7 +10,8 @@ class Signup extends Component {
 			password: '',
 			passwordstrength: 0, 
 			passwordweak: false,
-			redirectTo: null
+			redirectTo: null,
+			message: null
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -49,7 +50,9 @@ class Signup extends Component {
 				}).catch(error => {
 					console.log('signup error: ')
 					console.log(error)
-	
+					this.setState({ 
+						message: 'Username already taken. Choose a different user name.'
+					})
 				})
 	
 		}else{
@@ -95,7 +98,7 @@ render() {
 					</div>
 					
 				</div><br/>
-				{this.state.passwordweak ? <p>Password is too weak, choose a new password</p> : ""}
+				{this.state.passwordweak ? <p className="label label-error">Password is too weak, choose a new password</p> : ""}
 				<div className="form-group ">
 					<div className="col-7"></div>
 					<button
@@ -105,6 +108,7 @@ render() {
 					>Sign up</button>
 				</div>
 			</form>
+			{this.state.message ? <span className="label label-error">{this.state.message}</span> : ""}
 			{this.state.redirectTo && (
 				<Redirect to={this.state.redirectTo }/>
 			)}
