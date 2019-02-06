@@ -97,6 +97,7 @@ class LoginForm extends Component {
                                 type="submit">Login</button>
                         </div>
                     </form>
+                    <h3>If it's your first time click the sign up link above.</h3>
                 </div>
             )
         }
