@@ -161,7 +161,7 @@ class Home extends Component {
                 <textarea className="form-input" id="notes" name="notes" value={this.state.notes} onChange={this.handleInputChange} placeholder="Notes about your climb. Route, weather conditions, difficulty etc." rows="3"></textarea>
                 </div>
                 <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0 || this.state.editing} type="submit">Submit</button>
-                <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0 && !this.state.editing} type="update">Update</button>
+                <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0 || !this.state.editing} type="update">Update</button>
 
                 </form>
                 </div>  
