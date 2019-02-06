@@ -63,7 +63,11 @@ class Home extends Component {
                 this.setState({
                     peaks: response.data,
                     name: '',
-                    height: 0
+                    height: '',
+                    date: '2019-02-12',
+                    notes: '',
+                    editing: false,
+                    id: null
                 })
             })
         }
@@ -78,6 +82,17 @@ class Home extends Component {
             height: 0
           })
         })
+    }
+    clear() {
+        this.setState({
+            name: '',
+            height: '',
+            date: '2019-02-12',
+            notes: '',
+            peaks: null,
+            editing: false,
+            id: null
+        }  );
     }
     update(peak){
         this.setState({
@@ -148,6 +163,8 @@ class Home extends Component {
 
                 </form>
                 </div>  
+                <button className="btn btn-primary input-group-btn" onClick="this.clear" type="clear">back</button>
+
                 <ol>
                 { this.state.peaks && this.state.peaks.map((peak)=>{
                         return (
