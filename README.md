@@ -33,8 +33,8 @@ The front-end React app will auto-reload as it's updated via webpack dev server,
 
 ## These are the libraries, packages and technologies that I used:
 
-MVC Paradigm folder structure
-Github issues and GitKraken for project manager
+1. MVC Paradigm folder structure
+2. Github issues and GitKraken for project manager
 
 ### Frontend:
 1. Spectre CSS
