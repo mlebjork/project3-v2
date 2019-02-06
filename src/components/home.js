@@ -26,6 +26,8 @@ class Home extends Component {
           })
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.clear = this.clear.bind(this);
+
     }
     handleInputChange(event) {
         const target = event.target;
@@ -89,10 +91,10 @@ class Home extends Component {
             height: '',
             date: '2019-02-12',
             notes: '',
-            peaks: null,
             editing: false,
             id: null
         }  );
+        console.log(this.state)
     }
     update(peak){
         this.setState({
@@ -163,7 +165,7 @@ class Home extends Component {
 
                 </form>
                 </div>  
-                <button className="btn btn-primary input-group-btn" onClick="this.clear" type="clear">back</button>
+                <button className="btn btn-primary input-group-btn" onClick={this.clear} type="clear">Clear form or changes</button>
 
                 <ol>
                 { this.state.peaks && this.state.peaks.map((peak)=>{
