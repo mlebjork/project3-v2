@@ -47,6 +47,9 @@ html body .container {
   background: rgba(255, 255, 255, 0.8);;
   border-radius: 3px;
 }
+html body .accordion .accordion-header {
+  padding: .2rem .4rem .8rem
+}
 .accordion-body {
   padding: 0 10px;
 }
