@@ -117,7 +117,7 @@ class Home extends Component {
 
         return (
             <div>
-                <p>Add the peak you climbed.</p>
+                <h3>Add the peak you climbed.</h3>
             <div className="container">
             <div class="columns">
                 <div className="column col-3">
