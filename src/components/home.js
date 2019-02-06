@@ -141,7 +141,6 @@ class Home extends Component {
         return (
             <div>
                 <p>Add the peak you climbed.</p>
-                <img style={imageStyle} src="https://i.ytimg.com/vi/N1icEHtgb3g/maxresdefault.jpg" />
             <div>
                 <form onSubmit={this.handleFormSubmit}>
                 <div className="form-group">

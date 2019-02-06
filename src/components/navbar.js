@@ -61,12 +61,15 @@ class Navbar extends Component {
                     <div className="col-4 col-mr-auto">
                     <div id="top-filler"></div>
                         <img src={logo} className="App-logo" alt="logo" />
-                        <h1 className="App-title">PEAKBAGGER</h1>
+                        <h1 className="App-title">PEAKBAGGER </h1>
                     </div>
                 </header>
-                {!this.props.loggedIn && (
+                {this.props.loggedIn === false ? (
                     <Redirect to={'login'}/>
-                )}
+                ) : (
+                    <Redirect to={''}/>)
+
+                }
             </div>
 
         );
