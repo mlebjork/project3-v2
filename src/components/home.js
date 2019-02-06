@@ -140,11 +140,13 @@ class Home extends Component {
                     <label className="form-label" htmlFor="notes">Notes</label>
                     <textarea className="form-input" id="notes" name="notes" value={this.state.notes} onChange={this.handleInputChange} placeholder="Notes about your climb. Route, weather conditions, difficulty etc." rows="3"></textarea>
                     </div>
+                    <div class="btn-group btn-group-block">
                     <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0 || this.state.editing} type="submit">Submit</button>
                     <button className="btn btn-primary input-group-btn" disabled={this.state.name.length === 0 && this.state.height.length === 0 || !this.state.editing} type="update">Update</button>
-
-                    </form>
                     <button className="btn btn-primary input-group-btn" onClick={this.clear} type="clear">Clear changes</button>
+</div>
+                  
+                    </form>
                 </div>
                 <div className="column col-4 col-mx-auto">
                 { this.state.peaks && this.state.peaks.map((peak)=>{
