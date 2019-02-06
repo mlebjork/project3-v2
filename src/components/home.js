@@ -146,19 +146,18 @@ class Home extends Component {
                   
                     </form>
                 </div>
-                <div className="column col-4 col-mx-auto">
+                <div className="column col-6 col-mx-auto">
                 { this.state.peaks && this.state.peaks.map((peak)=>{
                     return (
                             <div class="accordion">
                                 <input type="checkbox" id={peak.name} name="accordion-checkbox" hidden />
                                 <label class="accordion-header" for={peak.name}>
                                     <i class="icon icon-arrow-right mr-1"></i>
-                                    {peak.date} : <b>{peak.name}</b>    
+                                    {peak.date} <b>{peak.name}</b>  {peak.height} ft   
                                     <button className="btn btn-error float-right" onClick={()=>{this.delete(peak._id)}}>delete</button>
                                     <span className="btn btn-success float-right" onClick={()=>{this.update(peak)}}>update</span>
                                 </label>
                                 <div class="accordion-body">
-                                    <p>{peak.height} ft</p>
                                     <p>{peak.notes}</p>
                                 </div>
                             </div>
