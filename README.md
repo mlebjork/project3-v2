@@ -2,7 +2,9 @@
 
 ## Node/Express/React app deployed to Heroku.
 
-See the app [here](https://project3mlebjork.herokuapp.com/)
+Peakbagger is a web based loogbook where climbers and hikers can log their climbs. Look [here](https://drive.google.com/file/d/18T-ZZkH6cqWzrar0AX5LsFNCNgzGl5f2/view?usp=sharing) to see what the app is about.
+
+Test the app out [here](https://project3mlebjork.herokuapp.com/)
 
 
 ## Starting the app locally
